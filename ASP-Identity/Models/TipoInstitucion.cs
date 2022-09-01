@@ -6,8 +6,9 @@ namespace ASP_Identity.Models
     {
         public int TipoInstitucionId { get; set; }
         public string NombreInstitucion { get; set; }
-        public int UserId { get; set; }
-        public ApplicationUser User  { get; set; }
+        //Propiedades de navegacion
+        public int UsuarioId { get; set; }
+        public virtual ApplicationUser Usuario { get; set; }
     }
 
 }
