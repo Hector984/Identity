@@ -125,7 +125,7 @@ namespace ASP_Identity.Areas.Identity.Pages.Account
                 var user = CreateUser();
 
                 user.Nombre = Input.Nombre;
-                user.Apellidos = Input.Apellidos;
+                //user.Apellidos = Input.Apellidos;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
