@@ -1,4 +1,5 @@
 ﻿using ASP_Identity.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ASP_Identity.Models
 {
@@ -7,7 +8,6 @@ namespace ASP_Identity.Models
         public int NivelResponsabilidadId { get; set; }
         public string Nombre { get; set; }
         //Propiedades de navegacion
-        public int UsuarioId { get; set; }
-        public virtual ApplicationUser Usuario { get; set; }
+        public virtual List<ApplicationUser> Usuario { get; set; }
     }
 }

@@ -18,11 +18,23 @@ public class ApplicationUser : IdentityUser
     public string CURP { get; set; }
     public string CorreoPersonal { get; set; }
     public string TelefonoPersonal { get; set; }
-    public virtual IEnumerable<TipoInstitucion> TipoInstitucion { get; set; }
+
+    [Column("n_tipo_institucion")]
+    public int TipoInstitucionId { get; set; }
+    public virtual TipoInstitucion TipoInstitucion { get; set; }
     public string NombreInstitucion { get; set; }
     public string CargoLaboral { get; set; }
-    public virtual IEnumerable<Politica> Politica { get; set; }
-    public virtual IEnumerable<NivelSeguimiento> NivelSeguimiento { get; set; }
-    public virtual IEnumerable<NivelResponsabilidad> NivelResponsabilidad { get; set; }
+
+    //[Column("n_politica")]
+    //public int PoliticaId { get; set; }
+    //public virtual Politica Politica { get; set; }
+
+    [Column("n_nivel_seguimiento")]
+    public int NivelSeguimientoId { get; set; }
+    public virtual NivelSeguimiento NivelSeguimiento { get; set; }
+
+    [Column("n_nivel_responsabilidad")]
+    public int NivelResponsabilidadId { get; set; }
+    public virtual NivelResponsabilidad NivelResponsabilidad { get; set; }
 }
 

@@ -18,7 +18,10 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
     DbSet<NivelSeguimiento> NivelSeguimiento { get; set; }
     DbSet<TipoInstitucion> TipoInstitucion { get; set; }
     DbSet<Politica> Politica { get; set; }
-
+    //DbSet<Politica> Politica => Set<Politica>();
+    //DbSet<TipoInstitucion> TipoInstitucion => Set<TipoInstitucion>();
+    //DbSet<NivelSeguimiento> NivelSeguimiento => Set<NivelSeguimiento>();
+    //DbSet<NivelResponsabilidad> NivelResponsabilidad => Set<NivelResponsabilidad>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -31,66 +34,66 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
 
             b.Property(u => u.Id).HasColumnType("varchar")
                                  .HasMaxLength(256)
-                                 .HasColumnName("id_usuario");
+                                 .HasColumnName("id_usuario").HasColumnOrder(1);
 
             b.Property(u => u.UserName).HasColumnType("varchar")
                                        .HasMaxLength(256)
-                                       .HasColumnName("ln_usuario");
+                                       .HasColumnName("ln_usuario").HasColumnOrder(2);
 
             b.Property(u => u.NormalizedUserName).HasColumnType("varchar")
                                                  .HasMaxLength(256)
-                                                 .HasColumnName("ln_usuario_normalizado");
+                                                 .HasColumnName("ln_usuario_normalizado").HasColumnOrder(3);
+
+            b.Property(u => u.Nombre).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_nombre_usuario").HasColumnOrder(4);
+
+            b.Property(u => u.PrimerApellido).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_primer_apellido").HasColumnOrder(5);
+
+            b.Property(u => u.SegundoApellido).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_segundo_apellido").HasColumnOrder(6);
+
+            b.Property(u => u.CURP).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_curp").HasColumnOrder(7);
 
             b.Property(u => u.Email).HasColumnType("varchar")
-                                    .HasMaxLength(256).HasColumnName("ln_correo_laboral");
+                                    .HasMaxLength(256).HasColumnName("ln_correo_laboral").HasColumnOrder(8);
 
             b.Property(u => u.NormalizedEmail).HasColumnType("varchar")
-                                              .HasMaxLength(256).HasColumnName("ln_c_normalizado");
+                                              .HasMaxLength(256).HasColumnName("ln_c_normalizado").HasColumnOrder(9);
 
             b.Property(u => u.EmailConfirmed).HasColumnType("boolean")
-                                             .HasColumnName("ind_correo_confirmado");
+                                             .HasColumnName("ind_correo_confirmado").HasColumnOrder(10);
 
-            b.Property(u => u.PasswordHash).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_hash_contrasenia");
+            b.Property(u => u.CorreoPersonal).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_correo_personal").HasColumnOrder(11);
 
-            b.Property(u => u.SecurityStamp).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_security_stamp");
+            b.Property(u => u.PhoneNumber).HasColumnType("varchar").HasColumnName("ln_tel_laboral").HasColumnOrder(12);
 
-            b.Property(u => u.ConcurrencyStamp).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_concurrency_stamp");
+            b.Property(u => u.TelefonoPersonal).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_tel_personal").HasColumnOrder(13);
 
-            b.Property(u => u.PhoneNumber).HasColumnType("varchar").HasColumnName("ln_tel_laboral");
+            //b.Property(u => u.TipoInstitucion).HasColumnName("n_tipo_institucion").HasColumnOrder(14);
 
-            b.Property(u => u.PhoneNumberConfirmed).HasColumnType("boolean").HasColumnName("ind_tel_laboral_conf");
+            b.Property(u => u.NombreInstitucion).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_nombre_institucion").HasColumnOrder(15);
 
-            b.Property(u => u.TwoFactorEnabled).HasColumnType("boolean").HasColumnName("ind_two_factor_enabled");
+            b.Property(u => u.CargoLaboral).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_cargo_laboral").HasColumnOrder(16);
+
+            //b.Property(u => u.NivelSeguimiento).HasColumnName("n_nivel_seguimiento").HasColumnOrder(17);
+
+            //b.Property(u => u.NivelResponsabilidad).HasColumnName("n_nivel_responsabilidad").HasColumnOrder(18);
+
+            b.Property(u => u.PasswordHash).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_hash_contrasenia").HasColumnOrder(19);
+
+            b.Property(u => u.SecurityStamp).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_security_stamp").HasColumnOrder(20);
+
+            b.Property(u => u.ConcurrencyStamp).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_concurrency_stamp").HasColumnOrder(21);
+
+            //b.Property(u => u.PhoneNumberConfirmed).HasColumnType("boolean").HasColumnName("ind_tel_laboral_conf");
+
+            b.Ignore(u => u.PhoneNumberConfirmed);
+
+            b.Property(u => u.TwoFactorEnabled).HasColumnType("boolean").HasColumnName("ind_two_factor_enabled").HasColumnOrder(21);
 
             b.Ignore(u => u.LockoutEnd);
 
-            b.Property(u => u.LockoutEnabled).HasColumnType("boolean").HasColumnName("ind_bloqueo_habilitado");
+            b.Property(u => u.LockoutEnabled).HasColumnType("boolean").HasColumnName("ind_bloqueo_habilitado").HasColumnOrder(22);
 
-            b.Property(u => u.AccessFailedCount).HasColumnName("nu_num_acceso_fallido");
-
-            b.Property(u => u.Nombre).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_nombre_usuario");
-
-            b.Property(u => u.PrimerApellido).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_primer_apellido");
-
-            b.Property(u => u.SegundoApellido).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_segundo_apellido");
-
-            b.Property(u => u.CURP).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_curp");
-
-            b.Property(u => u.CorreoPersonal).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_correo_personal");
-
-            b.Property(u => u.TelefonoPersonal).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_tel_personal");
-
-            b.Property(u => u.TipoInstitucion).HasColumnName("n_tipo_institucion");
-
-            b.Property(u => u.NombreInstitucion).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_nombre_institucion");
-
-            b.Property(u => u.CargoLaboral).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_cargo_laboral");
-
-            b.Property(u => u.Politica).HasColumnName("n_politica");
-
-            b.Property(u => u.NivelSeguimiento).HasColumnName("n_nivel_seguimiento");
-
-            b.Property(u => u.NivelResponsabilidad).HasColumnName("n_nivel_responsabilidad");
+            b.Property(u => u.AccessFailedCount).HasColumnName("nu_num_acceso_fallido").HasColumnOrder(23);
 
         });
 
@@ -172,6 +175,18 @@ public class ApplicationDBContext : IdentityDbContext<ApplicationUser>
             b.HasIndex(ns => ns.Nivel).HasDatabaseName("ln_nivel_indice").IsUnique();
 
             b.Property(ns => ns.Nivel).HasColumnType("varchar").HasMaxLength(256).HasColumnName("ln_nivel");
+        });
+
+        builder.Entity<NivelResponsabilidad>(b =>
+        {
+            b.ToTable("tb_cat_nivel_resp");
+
+            b.HasKey(nr => nr.NivelResponsabilidadId);
+
+            b.Property(nr => nr.NivelResponsabilidadId).HasColumnName("id_nivel_responsabilidad").UseIdentityByDefaultColumn();
+
+            b.Property(nr => nr.Nombre).HasColumnName("ln_nombre").HasMaxLength(256);
+
         });
 
         builder.Entity<Politica>(b =>
